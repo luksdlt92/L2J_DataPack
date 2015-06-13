@@ -34,7 +34,7 @@ public class One implements ITargetTypeHandler
 	public L2Object[] getTargetList(Skill skill, L2Character activeChar, boolean onlyFirst, L2Character target)
 	{
 		// Check for null target or any other invalid target
-		if ((target == null) || target.isDead() || ((target == activeChar) && skill.isBad()))
+		if ((target == null) || target.isDead() || ((target == activeChar) && skill.isBad()) || (activeChar.isMonster() && target.isPlayable() && !skill.isBad()))
 		{
 			activeChar.sendPacket(SystemMessageId.TARGET_IS_INCORRECT);
 			return EMPTY_TARGET_LIST;
